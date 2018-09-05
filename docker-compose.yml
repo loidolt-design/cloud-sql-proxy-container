@@ -24,7 +24,7 @@ services:
 
   adminer:
     depends_on:
-      cloudsql-proxy
+      - cloudsql-proxy
     image: adminer
     deploy:
       mode: replicated
@@ -36,13 +36,14 @@ services:
         - "traefik.port=8080"
         - "traefik.docker.network=web"
         - "traefik.frontend.rule=Host:db.loidoltdesign.com"
+    environment: 
+      ADMINER_DEFAULT_SERVER: cloudsql-proxy
     networks:
       - database
+      - web
 
 networks:
   database:
     external: true
-
-#secrets:
-  #cloud-sql-proxy-config:
-   # external: true
+  web:
+    external: true
