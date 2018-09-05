@@ -11,14 +11,13 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 3
+      placement:
+        constraints: [node.role==manager]
       labels:
       - "traefik.enable=false"
     command: ./cloud_sql_proxy -dir=/cloudsql -instances=loidoltwebhost:us-central1:swarm-sql1=tcp:0.0.0.0:3306
     volumes:
       - /mnt/loidoltdesign-swarm/cloudsql:/cloudsql
-      #- /run/secrets/cloud-sql-proxy-config:/config
-    #secrets:
-      #- cloud-sql-proxy-config
     networks:
       - database
 
