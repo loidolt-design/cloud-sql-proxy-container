@@ -23,6 +23,8 @@ services:
       - backend
 
   adminer:
+    depends_on:
+      cloudsql-proxy
     image: adminer
     deploy:
       mode: replicated
