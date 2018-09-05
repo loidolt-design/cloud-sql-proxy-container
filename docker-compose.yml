@@ -20,7 +20,7 @@ services:
     #secrets:
       #- cloud-sql-proxy-config
     networks:
-      - backend
+      - database
 
   adminer:
     depends_on:
@@ -35,10 +35,12 @@ services:
         - "traefik.enable=true"
         - "traefik.port=8080"
         - "traefik.docker.network=web"
-        - "traefik.frontend.rule=Host:db.loidoltdesign.com" 
+        - "traefik.frontend.rule=Host:db.loidoltdesign.com"
+    networks:
+      - database
 
 networks:
-  backend:
+  database:
     external: true
 
 #secrets:
