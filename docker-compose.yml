@@ -17,7 +17,7 @@ services:
       - "traefik.enable=false"
     command: ./cloud_sql_proxy -dir=/cloudsql -instances=loidoltwebhost:us-central1:swarm-sql1=tcp:0.0.0.0:3306
     volumes:
-      - /mnt/loidoltdesign-swarm/cloudsql:/cloudsql
+      - /swarm/volumes/cloudsql:/cloudsql
     networks:
       - database
 
